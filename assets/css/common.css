@@ -1,0 +1,15 @@
+img{
+	width: 100%;
+	height: auto;
+}
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.greyBg{
+	background-color: #F1F1F1;
+}
+.text-danger{
+	color: #da251e;
+}

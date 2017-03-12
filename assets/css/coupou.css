@@ -1,0 +1,18 @@
+.coupou-list .col-md-3{
+	margin: 20px 0;
+}
+.coupou-list .highlight{
+	font-size: 30px;
+}
+.coupou-list .price .quan{
+    /* line-height: 52px; */
+    border: 1px solid;
+    padding: 9px 13px;
+    font-size: 16px;
+    color: #da251e;
+}
+.coupou-list .text{
+    background-color: #FFF;
+    padding: 5px 20px;
+    box-shadow: 0 1px 5px 0 rgba(218, 36, 30, 0.35);
+}

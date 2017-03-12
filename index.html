@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>优惠券</title>
+	<link rel="stylesheet" href="assets/bootstrap/bootstrap-3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/common.css">
+	<link rel="stylesheet" href="assets/css/coupou.css">
+</head>
+<body class="greyBg">
+	<header>
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">券券券</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">优惠券列表 <span class="sr-only">(current)</span></a></li>
+						<li><a href="#">关于我</a></li>
+					</ul>					
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">登录</a></li>
+						<li><a href="#">注册</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+	</header>
+	<div id="coupou"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 coupou-list">
+				<div class="col-md-3">
+					<img src="assets/imgs/1.jpg" alt="商品图片">
+					<div class="text">
+						<p class="clearfix price"><span class="pull-left quan">券 10元</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
+						<p class="ellipsis-1"><a href="#" class="text-muted">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
+						<p class="text-muted">销量：80000000</p>
+					</div>					
+				</div>
+				<div class="col-md-3">
+					<img src="assets/imgs/1.jpg" alt="商品图片">
+					<div class="text">
+						<p class="clearfix price"><span class="pull-left">现价：￥20</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
+						<p class="ellipsis-1"><a href="#">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
+						<p>销量：80000000</p>
+					</div>					
+				</div>
+				<div class="col-md-3">
+					<img src="assets/imgs/1.jpg" alt="商品图片">
+					<div class="text">
+						<p class="clearfix price"><span class="pull-left">现价：￥20</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
+						<p class="ellipsis-1"><a href="#">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
+						<p>销量：80000000</p>
+					</div>					
+				</div>
+				<div class="col-md-3">
+					<img src="assets/imgs/1.jpg" alt="商品图片">
+					<div class="text">
+						<p class="clearfix price"><span class="pull-left">现价：￥20</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
+						<p class="ellipsis-1"><a href="#">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
+						<p>销量：80000000</p>
+					</div>					
+				</div>
+				<div class="col-md-3">
+					<img src="assets/imgs/1.jpg" alt="商品图片">
+					<div class="text">
+						<p class="clearfix price"><span class="pull-left">现价：￥20</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
+						<p class="ellipsis-1"><a href="#">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
+						<p>销量：80000000</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+	<script id="coupouItem" type="text/html">
+	{{each result}}
+	<p>{{$index}}</p>
+	{{value}}
+	</script>
+	<script src="assets/jquery/1.12.4/jquery.min.js"></script>
+	<script src="assets/bootstrap/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+	<script src="assets/artTemplate-3.0/template.js"></script>
+	<script>
+		$.get("api/getCoupou.php",function(data){
+			data=$.parseJSON(data);
+			var result=data.result;
+			data=data["data"];
+			console.log(result[0]);
+			// console.log(data);
+			resultObj={result:result};
+			var coupouHTML=template("coupouItem",resultObj);
+			// console.log();
+			document.getElementById('coupou').innerHTML=coupouHTML;
+		})
+	</script>
+</body>
+</html>
