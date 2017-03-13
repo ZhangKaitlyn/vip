@@ -11,5 +11,9 @@ ul{
 	background-color: #F1F1F1;
 }
 .text-danger{
-	color: #da251e;
+	color: #FF0F0F;
+}
+.btn-danger{
+	background-color: #FF0F0F;
+	border-color: #FF0F0F;
 }

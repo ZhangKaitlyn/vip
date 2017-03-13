@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="assets/css/common.css">
 	<link rel="stylesheet" href="assets/css/coupou.css">
 </head>
-<body class="greyBg">
+<body>
 	<header>
 		<nav class="navbar navbar-default">
 			<div class="container">
@@ -36,57 +36,23 @@
 			</div><!-- /.container-fluid -->
 		</nav>
 	</header>
-	<div id="coupou"></div>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12 coupou-list">
-				<div class="col-md-3">
-					<img src="assets/imgs/1.jpg" alt="商品图片">
-					<div class="text">
-						<p class="clearfix price"><span class="pull-left quan">券 10元</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
-						<p class="ellipsis-1"><a href="#" class="text-muted">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
-						<p class="text-muted">销量：80000000</p>
-					</div>					
-				</div>
-				<div class="col-md-3">
-					<img src="assets/imgs/1.jpg" alt="商品图片">
-					<div class="text">
-						<p class="clearfix price"><span class="pull-left">现价：￥20</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
-						<p class="ellipsis-1"><a href="#">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
-						<p>销量：80000000</p>
-					</div>					
-				</div>
-				<div class="col-md-3">
-					<img src="assets/imgs/1.jpg" alt="商品图片">
-					<div class="text">
-						<p class="clearfix price"><span class="pull-left">现价：￥20</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
-						<p class="ellipsis-1"><a href="#">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
-						<p>销量：80000000</p>
-					</div>					
-				</div>
-				<div class="col-md-3">
-					<img src="assets/imgs/1.jpg" alt="商品图片">
-					<div class="text">
-						<p class="clearfix price"><span class="pull-left">现价：￥20</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
-						<p class="ellipsis-1"><a href="#">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
-						<p>销量：80000000</p>
-					</div>					
-				</div>
-				<div class="col-md-3">
-					<img src="assets/imgs/1.jpg" alt="商品图片">
-					<div class="text">
-						<p class="clearfix price"><span class="pull-left">现价：￥20</span><span class="pull-right">券后价：￥<span class="text-danger highlight">10</span></span></p>
-						<p class="ellipsis-1"><a href="#">南极人外穿薄款九分小脚打底裤黑色高腰紧身铅笔裤子女2017春季潮</a></p>
-						<p>销量：80000000</p>
-					</div>					
-				</div>
+			<div id="coupou" class="col-md-12 coupou-list">
 			</div>
 		</div>
 	</div>
 	<script id="coupouItem" type="text/html">
-	{{each result}}
-	<p>{{$index}}</p>
-	{{value}}
+		{{each result}}
+		<div class="col-md-3">
+			<img src="{{$value.Pic}}" alt="{{$value.D_title}}">
+			<div class="text">
+				<p class="clearfix price"><span class="pull-left quan"><img src="assets/imgs/icon/quan.png" alt=""><span>5</span><!-- 现价：￥{{$value.Org_Price}} --></span><span class="pull-right">券后价：￥<span class="text-danger highlight">{{$value.Price}}</span></span></p>
+				<p class="ellipsis-1"><a href="{{$value.quan_link}}" target="_blank">{{$value.Title}}</a></p>
+				<p>销量：{{$value.Sales_num}}</p>
+			</div>					
+		</div>
+		{{/each}}
 	</script>
 	<script src="assets/jquery/1.12.4/jquery.min.js"></script>
 	<script src="assets/bootstrap/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -99,6 +65,7 @@
 			console.log(result[0]);
 			// console.log(data);
 			resultObj={result:result};
+			console.log(resultObj);
 			var coupouHTML=template("coupouItem",resultObj);
 			// console.log();
 			document.getElementById('coupou').innerHTML=coupouHTML;

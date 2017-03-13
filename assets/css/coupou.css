@@ -4,15 +4,26 @@
 .coupou-list .highlight{
 	font-size: 30px;
 }
-.coupou-list .price .quan{
-    /* line-height: 52px; */
-    border: 1px solid;
-    padding: 9px 13px;
-    font-size: 16px;
-    color: #da251e;
-}
+
 .coupou-list .text{
     background-color: #FFF;
     padding: 5px 20px;
-    box-shadow: 0 1px 5px 0 rgba(218, 36, 30, 0.35);
+}
+.price .quan img{
+    width: 25px;
+}
+.coupou-list .quan{
+    line-height: 42px;
+}
+.coupou-list .col-md-3 {
+    margin: 20px 0;
+    width: 23%;
+    padding: 0;
+    margin: 10px 1%;
+    border: 1px solid #DCDCDC;
+}
+.coupou-list .quan span{
+    color: #FF0F0F;
+    padding: 3px 5px;
+    border: 2px solid;
 }
