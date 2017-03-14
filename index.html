@@ -47,9 +47,9 @@
 		<div class="col-md-3">
 			<img src="{{$value.Pic}}" alt="{{$value.D_title}}">
 			<div class="text">
-				<p class="clearfix price"><span class="pull-left quan"><img src="assets/imgs/icon/quan.png" alt=""><span>5</span><!-- 现价：￥{{$value.Org_Price}} --></span><span class="pull-right">券后价：￥<span class="text-danger highlight">{{$value.Price}}</span></span></p>
-				<p class="ellipsis-1"><a href="{{$value.quan_link}}" target="_blank">{{$value.Title}}</a></p>
-				<p>销量：{{$value.Sales_num}}</p>
+				<p class="clearfix price"><span class="pull-left quan"><img src="assets/imgs/icon/quan.png" alt=""><span>￥5</span><!-- 现价：￥{{$value.Org_Price}} --></span><span class="pull-right">券后价：￥<span class="text-danger highlight">{{$value.Price}}</span></span></p>
+				<p class="ellipsis-1"><a class="text-muted info" href="{{$value.quan_link}}" target="_blank">{{$value.Title}}</a></p>
+				<p>销量：{{$value.Sales_num}} {{if $value.IsTmall}}<img src="assets/imgs/icon/tianmao.png" alt="" class="pull-right tmall-logo">{{/if}}</p>
 			</div>					
 		</div>
 		{{/each}}

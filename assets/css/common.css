@@ -17,3 +17,14 @@ ul{
 	background-color: #FF0F0F;
 	border-color: #FF0F0F;
 }
+.ellipsis-1{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.info{
+	font-size: 12px;
+}
+.tmall-logo{
+	width: 20px;
+}
