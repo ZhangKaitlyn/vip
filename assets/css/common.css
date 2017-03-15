@@ -28,3 +28,22 @@ ul{
 .tmall-logo{
 	width: 20px;
 }
+.navbar-default{
+	min-height: 30px;
+	background-color: #ff0f0f;
+	border-color: #ff0f0f;
+}
+.navbar-default .navbar-brand{
+	height: 30px;
+	font-size: 14px;
+	padding: 6px 15px;
+	color: #FFF;
+}
+.navbar-default .navbar-nav>li>a{
+	padding: 6px 12px;
+	color: #FFF;
+}
+.navbar-default .navbar-nav>.active>a{
+	background-color: rgba(255, 255, 255, 0.4);
+	color: #FFF;
+}

@@ -18,11 +18,12 @@ include "httpRequest.php";
 // $req->setPageNo("1");
 // $req->setPid("mm_119045028_16888897_62308435");
 // $resp = $c->execute($req);
+$page=$_GET["page"];
 $url="http://api.dataoke.com/index.php?r=Port/index";
 $type="total";
 $appkey="8sfd85v39w";
 $version=2;
-$page=1;
+// $page=2;
 
 $c=new httpRequest($url,$type,$appkey,$version,$page);
 $requestUrl=$c->paramString();

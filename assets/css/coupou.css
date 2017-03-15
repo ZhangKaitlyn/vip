@@ -7,7 +7,7 @@
 
 .coupou-list .text{
     background-color: #FFF;
-    padding: 5px 20px;
+    padding: 5px 20px 10px;
 }
 .price .quan img{
     width: 20px;
@@ -36,4 +36,6 @@
     vertical-align: middle;
     margin-left: -3px;
     border-radius: 2px;
+    font-size: 18px;
+    font-weight: bold;
 }

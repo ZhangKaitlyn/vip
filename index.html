@@ -38,8 +38,30 @@
 	</header>
 	<div class="container">
 		<div class="row">
+			<div class="page">
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li data-page="1"><a>1</a></li>
+						<li data-page="2"><a>2</a></li>
+						<li data-page="3"><a>3</a></li>
+						<li data-page="4"><a>4</a></li>
+						<li data-page="5"><a>5</a></li>
+						<li>
+							<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
 			<div id="coupou" class="col-md-12 coupou-list">
 			</div>
+			
 		</div>
 	</div>
 	<script id="coupouItem" type="text/html">
@@ -47,10 +69,14 @@
 		<div class="col-md-3">
 			<img src="{{$value.Pic}}" alt="{{$value.D_title}}">
 			<div class="text">
-				<p class="clearfix price"><span class="pull-left quan"><img src="assets/imgs/icon/quan.png" alt=""><span>￥5</span><!-- 现价：￥{{$value.Org_Price}} --></span><span class="pull-right">券后价：￥<span class="text-danger highlight">{{$value.Price}}</span></span></p>
-				<p class="ellipsis-1"><a class="text-muted info" href="{{$value.quan_link}}" target="_blank">{{$value.Title}}</a></p>
+				<p class="clearfix price">
+					<span class="pull-left quan"><img src="assets/imgs/icon/quan.png" alt=""><span>￥{{$value.Quan_price}}</span></span>
+					<span class="pull-right">券后价：￥<span class="text-danger highlight">{{$value.Price}}</span></span>
+				</p>
+				<p class="ellipsis-1"><a class="text-muted info" href="{{$value.Quan_link}}" target="_blank">{{$value.Title}}</a></p>
 				<p>销量：{{$value.Sales_num}} {{if $value.IsTmall}}<img src="assets/imgs/icon/tianmao.png" alt="" class="pull-right tmall-logo">{{/if}}</p>
-			</div>					
+				<a class="btn btn-block btn-danger" href="{{$value.Quan_m_link}}" target="_blank">抢券(余{{$value.Quan_surplus}}张)</a>
+			</div>
 		</div>
 		{{/each}}
 	</script>
@@ -58,18 +84,24 @@
 	<script src="assets/bootstrap/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 	<script src="assets/artTemplate-3.0/template.js"></script>
 	<script>
-		$.get("api/getCoupou.php",function(data){
-			data=$.parseJSON(data);
-			var result=data.result;
-			data=data["data"];
-			console.log(result[0]);
-			// console.log(data);
-			resultObj={result:result};
-			console.log(resultObj);
-			var coupouHTML=template("coupouItem",resultObj);
-			// console.log();
-			document.getElementById('coupou').innerHTML=coupouHTML;
-		})
+		$(".pagination > li").on("click",function(e){
+			var clickPage=$(this)[0].dataset.page;
+			getCoupou(clickPage);
+		});
+	</script>
+	<script>
+		function getCoupou(page){
+			var url="api/getCoupou.php?page="+page;
+			$.get(url,function(data){
+				data=$.parseJSON(data);
+				var result=data.result;
+				data=data["data"];
+				console.log(result[0]);
+				resultObj={result:result};
+				var coupouHTML=template("coupouItem",resultObj);
+				document.getElementById('coupou').innerHTML=coupouHTML;
+			})
+		}
 	</script>
 </body>
 </html>
