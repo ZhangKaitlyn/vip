@@ -25,8 +25,22 @@ $appkey="8sfd85v39w";
 $version=2;
 // $page=2;
 
-$c=new httpRequest($url,$type,$appkey,$version,$page);
-$requestUrl=$c->paramString();
-$resp=$c->curl($requestUrl);
+//一次请求获取200条数据，分5页显示,1页显示40条，在第4页的时候就请求另外200条数据
+if($page % 5 == 4){
+	$requestPage=$page/5+2;
+	$datas[$requestPage]=getData($url,$type,$appkey,$version,$requestPage);
+}
+if($page==1){
+	$datas[0]=getData($url,$type,$appkey,$version,1);
+}
+$result=array_slice($datas[$requestPage-1], $page%5);
 
-echo $resp;
+function getData($url,$type,$appkey,$version,$page){
+	$c=new httpRequest($url,$type,$appkey,$version,$page);
+	$requestUrl=$c->paramString();
+	$resp=$c->curl($requestUrl);
+	return $resp;
+}
+
+
+echo $result;

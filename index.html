@@ -84,12 +84,6 @@
 	<script src="assets/bootstrap/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 	<script src="assets/artTemplate-3.0/template.js"></script>
 	<script>
-		$(".pagination > li").on("click",function(e){
-			var clickPage=$(this)[0].dataset.page;
-			getCoupou(clickPage);
-		});
-	</script>
-	<script>
 		function getCoupou(page){
 			var url="api/getCoupou.php?page="+page;
 			$.get(url,function(data){
@@ -102,6 +96,14 @@
 				document.getElementById('coupou').innerHTML=coupouHTML;
 			})
 		}
+		getCoupou(1);
+		$(".pagination > li").on("click",function(e){
+			var clickPage=$(this)[0].dataset.page;
+			getCoupou(clickPage);
+		});
+	</script>
+	<script>
+		
 	</script>
 </body>
 </html>
