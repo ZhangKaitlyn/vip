@@ -4,6 +4,10 @@
 .coupou-list .highlight{
 	font-size: 30px;
 }
+.good-img{
+    height: 260px;
+    object-fit: cover;
+}
 
 .coupou-list .text{
     background-color: #FFF;

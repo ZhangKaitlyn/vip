@@ -37,37 +37,37 @@
 		</nav>
 	</header>
 	<div class="container">
-		<div class="row">
+		<div class="row">			
+			<div id="coupou" class="col-md-12 coupou-list">
+			</div>
 			<div class="page">
 				<nav aria-label="Page navigation">
 					<ul class="pagination">
 						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
+							<a aria-label="Previous" id="prev" class="btn btn-default">上一页</a>
 						</li>
-						<li data-page="1"><a>1</a></li>
+						<li>
+							<a aria-label="Next" id="next" class="btn btn-default">下一页</a>
+						</li>
+						<!-- <li data-page="1"><a>1</a></li>
 						<li data-page="2"><a>2</a></li>
 						<li data-page="3"><a>3</a></li>
 						<li data-page="4"><a>4</a></li>
-						<li data-page="5"><a>5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
+						<li data-page="5"><a>5</a></li> -->
+						<!-- <li>
+							<a aria-label="Next" id="next">
+								<span aria-hidden="true">下一页</span>
 							</a>
-						</li>
+						</li> -->
 					</ul>
 				</nav>
 			</div>
-			<div id="coupou" class="col-md-12 coupou-list">
-			</div>
-			
 		</div>
 	</div>
 	<script id="coupouItem" type="text/html">
 		{{each result}}
 		<div class="col-md-3">
-			<img src="{{$value.Pic}}" alt="{{$value.D_title}}">
+			<img class="good-img" src="{{$value.Pic}}" alt="{{$value.D_title}}">
 			<div class="text">
 				<p class="clearfix price">
 					<span class="pull-left quan"><img src="assets/imgs/icon/quan.png" alt=""><span>￥{{$value.Quan_price}}</span></span>
@@ -75,7 +75,7 @@
 				</p>
 				<p class="ellipsis-1"><a class="text-muted info" href="{{$value.Quan_link}}" target="_blank">{{$value.Title}}</a></p>
 				<p>销量：{{$value.Sales_num}} {{if $value.IsTmall}}<img src="assets/imgs/icon/tianmao.png" alt="" class="pull-right tmall-logo">{{/if}}</p>
-				<a class="btn btn-block btn-danger" href="{{$value.Quan_m_link}}" target="_blank">抢券(余{{$value.Quan_surplus}}张)</a>
+				<a class="btn btn-block btn-danger" href="{{$value.Quan_m_link}}" target="_blank">抢 券(余{{$value.Quan_surplus}}张)</a>
 			</div>
 		</div>
 		{{/each}}
@@ -86,21 +86,38 @@
 	<script>
 		function getCoupou(page){
 			var url="api/getCoupou.php?page="+page;
+			console.log(url);
 			$.get(url,function(data){
 				data=$.parseJSON(data);
-				var result=data.result;
-				data=data["data"];
-				console.log(result[0]);
-				resultObj={result:result};
+				resultObj={result:data};
 				var coupouHTML=template("coupouItem",resultObj);
 				document.getElementById('coupou').innerHTML=coupouHTML;
 			})
 		}
 		getCoupou(1);
-		$(".pagination > li").on("click",function(e){
-			var clickPage=$(this)[0].dataset.page;
-			getCoupou(clickPage);
+		var page=1;
+		if(page == 1){
+			$("#prev").attr("disabled","disabled");
+			$("#prev").off("click");
+			// console.log($("#prev"));
+		}
+		$("#prev").on("click",function(e){
+			getCoupou(--page);
+			if(page == 1){
+				$("#prev").attr("disabled","disabled");
+				$("#prev").off("click");				
+			}
+			$("html,body").animate({scrollTop:0}, 500);
 		});
+		$("#next").on("click",function(e){
+			$("#prev").removeAttr("disabled");
+			getCoupou(++page);
+			$("html,body").animate({scrollTop:0}, 500);
+		});
+		// $(".pagination > li").on("click",function(e){
+		// 	var clickPage=$(this)[0].dataset.page;
+		// 	getCoupou(clickPage);
+		// });
 	</script>
 	<script>
 		

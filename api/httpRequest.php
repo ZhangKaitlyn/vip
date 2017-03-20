@@ -12,20 +12,20 @@ class httpRequest
 
 	private $v;
 
-	private $page;
+	// private $page;
 
 	
-	function __construct($url,$type,$appkey,$v,$page)
+	function __construct($url,$type,$appkey,$v)
 	{
 		$this->url=$url;
 		$this->type=$type;
 		$this->appkey=$appkey;
 		$this->v=$v;
-		$this->page=$page;
+		// $this->page=$page;
 	}
 
 	public function paramString(){
-		return $this->url."&type=".$this->type."&appkey=".$this->appkey."&v=".$this->v."&page=".$this->page;
+		return $this->url."&type=".$this->type."&appkey=".$this->appkey."&v=".$this->v;
 	}
 
 	public function curl($url){
