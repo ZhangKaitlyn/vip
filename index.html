@@ -96,19 +96,17 @@
 		}
 		getCoupou(1);
 		var page=1;
-		if(page == 1){
+		if(page > 1){
+			$("#prev").on("click",function(e){
+				getCoupou(--page);
+				$("html,body").animate({scrollTop:0}, 500);
+			});
+		}else{
 			$("#prev").attr("disabled","disabled");
 			$("#prev").off("click");
 			// console.log($("#prev"));
 		}
-		$("#prev").on("click",function(e){
-			getCoupou(--page);
-			if(page == 1){
-				$("#prev").attr("disabled","disabled");
-				$("#prev").off("click");				
-			}
-			$("html,body").animate({scrollTop:0}, 500);
-		});
+		
 		$("#next").on("click",function(e){
 			$("#prev").removeAttr("disabled");
 			getCoupou(++page);
