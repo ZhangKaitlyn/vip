@@ -94,28 +94,23 @@
 				document.getElementById('coupou').innerHTML=coupouHTML;
 			})
 		}
+		$("#prev").attr("disabled","disabled");
 		getCoupou(1);
 		var page=1;
-		if(page > 1){
-			$("#prev").on("click",function(e){
+		$("#prev").on("click",function(e){
+			if(page>1){
 				getCoupou(--page);
 				$("html,body").animate({scrollTop:0}, 500);
-			});
-		}else{
-			$("#prev").attr("disabled","disabled");
-			$("#prev").off("click");
-			// console.log($("#prev"));
-		}
-		
+				if(page<=1){
+					$("#prev").attr("disabled","disabled");
+				}
+			}			
+		});
 		$("#next").on("click",function(e){
 			$("#prev").removeAttr("disabled");
 			getCoupou(++page);
 			$("html,body").animate({scrollTop:0}, 500);
 		});
-		// $(".pagination > li").on("click",function(e){
-		// 	var clickPage=$(this)[0].dataset.page;
-		// 	getCoupou(clickPage);
-		// });
 	</script>
 	<script>
 		
